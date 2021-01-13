@@ -7,4 +7,6 @@ import com.haythamxu.blogpostman.model.Blog;
 
 public interface BlogRepository extends PagingAndSortingRepository<Blog, Long>, JpaSpecificationExecutor<Blog> {
 
+    Blog getBlogById(Long id);
+
 }
