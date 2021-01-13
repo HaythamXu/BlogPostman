@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GithubWebhookController {
 
-    @GetMapping("/hello")
-    public ResponseEntity<String> getApplicationConfigurationDetails() {
-        return new ResponseEntity<>("hello world", HttpStatus.OK);
+    @GetMapping("/githubwebhook")
+    public ResponseEntity<Void> getApplicationConfigurationDetails() {
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
 
 }
