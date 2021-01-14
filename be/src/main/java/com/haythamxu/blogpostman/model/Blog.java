@@ -29,13 +29,21 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
-//
-//    @CreatedDate
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date created;
-//
-//    @LastModifiedDate
-//    private Date lastModified;
 
+    @CreatedDate
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+
+    @LastModifiedDate
+    private Date lastModified;
+
+    @Column(name="title")
+    private String title;
+
+    @Column(name="author")
+    private String author;
+
+    @Column(name="path")
+    private String path;
 
 }
