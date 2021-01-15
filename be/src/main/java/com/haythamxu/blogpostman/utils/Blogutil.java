@@ -12,22 +12,24 @@ import com.haythamxu.blogpostman.dto.BlogDTO;
 
 public class Blogutil {
 
+    public static Collection<BlogDTO> blogDTOCollection = new ArrayList<>();
+
     public static Collection<BlogDTO> getFiles(String basePath, String [] ignoreFile, String path) {
-        final File files = new File(path);
-        Collection<BlogDTO> blogDTOCollection = new ArrayList<>();
-        Arrays.stream(files.listFiles()).forEach(file -> {
-            if(!Arrays.asList(ignoreFile).contains(file.getName())) {
-                if (file.isDirectory()) {
-                    getFiles(basePath, ignoreFile, file.getPath());
+        File[] files = new File(path).listFiles();
+        BlogDTO blogDTO;
+        for (int i=0; i< files.length; i++) {
+            if(!Arrays.asList(ignoreFile).contains(files[i].getName())) {
+                if(files[i].isDirectory()) {
+                    Blogutil.getFiles(basePath, ignoreFile, files[i].getPath());
                 } else {
-                    BlogDTO blogDTO = new BlogDTO();
-                    blogDTO.setTitle(file.getName());
-                    blogDTO.setRelativePath(Blogutil.getFolderPath(basePath, file.getPath(), file.getName()));
-                    blogDTOCollection.add(blogDTO);
+                    blogDTO = new BlogDTO();
+                    blogDTO.setTitle(files[i].getName());
+                    blogDTO.setRelativePath(Blogutil.getFolderPath(basePath, files[i].getPath(), files[i].getName()));
+                    Blogutil.blogDTOCollection.add(blogDTO);
                 }
             }
-        });
-        return blogDTOCollection;
+        }
+        return Blogutil.blogDTOCollection;
     }
 
     public static String getBlogContent(String path, String blogName) {
