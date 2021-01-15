@@ -6,4 +6,6 @@ public interface BlogService {
 
     BlogDTO getBlogById(String id);
 
+    void updateBlogAfterPull();
+
 }

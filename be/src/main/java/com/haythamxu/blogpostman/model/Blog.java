@@ -43,7 +43,7 @@ public class Blog {
     @Column(name="author")
     private String author;
 
-    @Column(name="path")
-    private String path;
+    @Column(name="relativePath")
+    private String relativePath;
 
 }

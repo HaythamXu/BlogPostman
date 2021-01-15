@@ -13,6 +13,7 @@ public class BlogDTO {
     private String id;
     private String title;
     private String content;
+    private String relativePath;
     private Date created;
     private Date lastModified;
 }
