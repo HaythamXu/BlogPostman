@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,12 +14,16 @@ import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.sun.istack.NotNull;
 
 import lombok.Data;
 
 @Data
 @Table(name = "blog")
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Blog {
 
     public Blog() {
@@ -29,6 +34,10 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
+    @NotNull
+    @Column(nullable = false, updatable = false)
+    private String code;
 
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
