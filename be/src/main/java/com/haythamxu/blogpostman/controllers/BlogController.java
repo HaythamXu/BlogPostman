@@ -1,5 +1,7 @@
 package com.haythamxu.blogpostman.controllers;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +18,16 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
 
-    @GetMapping("/blog/{id}")
-    public ResponseEntity<BlogDTO> getBlogById(@PathVariable("id") String id) {
-        final BlogDTO ABlog = this.blogService.getBlogById(id);
+    @GetMapping("/blog/{code}")
+    public ResponseEntity<BlogDTO> getBlogById(@PathVariable("code") String code) {
+        final BlogDTO ABlog = this.blogService.getBlogByCode(code);
         return new ResponseEntity<>(ABlog, HttpStatus.OK);
+    }
+
+    @GetMapping("/bloglist")
+    public ResponseEntity<Collection<BlogDTO>> getBlogList() {
+        final Collection<BlogDTO> blogDTOCollection = this.blogService.getBlogList();
+        return new ResponseEntity<>(blogDTOCollection, HttpStatus.OK);
     }
 
 }
